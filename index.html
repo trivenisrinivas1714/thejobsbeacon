@@ -23,13 +23,25 @@
         </section>
         <section class="job-links">
             <h2>Today's Job Postings</h2>
-            <ul>
-                <li><a href="https://company1.com/jobs" target="_blank">Company 1 - Software Engineer</a></li>
-                <li><a href="https://company2.com/jobs" target="_blank">Company 2 - Data Analyst</a></li>
-                <li><a href="https://company3.com/jobs" target="_blank">Company 3 - Web Developer</a></li>
-                <!-- Add more job links here -->
+            <ul id="job-list">
+                <!-- Job links will be dynamically inserted here -->
             </ul>
         </section>
     </main>
+
+    <script>
+        // Fetch job data from the JSON file
+        fetch('jobs.json')
+            .then(response => response.json())
+            .then(data => {
+                const jobList = document.getElementById('job-list');
+                data.forEach(job => {
+                    const listItem = document.createElement('li');
+                    listItem.innerHTML = `<a href="${job.url}" target="_blank">${job.company} - ${job.position}</a>`;
+                    jobList.appendChild(listItem);
+                });
+            })
+            .catch(error => console.error('Error fetching job data:', error));
+    </script>
 </body>
 </html>
