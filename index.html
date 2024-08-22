@@ -40,6 +40,11 @@
                     listItem.innerHTML = `<a href="${job.url}" target="_blank">${job.company} - ${job.position}</a>`;
                     jobList.appendChild(listItem);
                 });
+
+                // Add the YouTube link at the end of the job links
+                const youtubeListItem = document.createElement('li');
+                youtubeListItem.innerHTML = `<a href="https://www.youtube.com/your-channel" target="_blank">🎥 Visit Our YouTube Channel</a>`;
+                jobList.appendChild(youtubeListItem);
             })
             .catch(error => console.error('Error fetching job data:', error));
     </script>
